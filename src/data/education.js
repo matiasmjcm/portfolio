@@ -1,0 +1,38 @@
+export const EDUCATION = [
+  {
+    id: 1,
+    institution: 'Université de Poitiers',
+    degree: 'Licence en Informatique',
+    period: '2024 – 2027 (expected)',
+    location: 'Poitiers, France',
+    status: 'ongoing',
+    courses: ['OCaml Programming', 'Databases', 'Algorithms', 'Computer Architecture'],
+  },
+  {
+    id: 2,
+    institution: 'CFLE – Université de Poitiers',
+    degree: 'French Language Program',
+    period: '2023',
+    location: 'Poitiers, France',
+    status: 'completed',
+    courses: ['Advanced French for Academic Purposes'],
+  },
+  {
+    id: 3,
+    institution: 'UTEC – Universidad de Ingeniería y Tecnología',
+    degree: 'Computer Science',
+    period: '2019 – 2021',
+    location: 'Lima, Peru',
+    status: 'completed',
+    courses: ['OOP', 'Python', 'C++', 'Databases', 'Algorithms', 'Graphs & Trees', 'Java'],
+  },
+  {
+    id: 4,
+    institution: 'Alianza Francesa de Lima',
+    degree: 'French Language',
+    period: '2020',
+    location: 'Lima, Peru',
+    status: 'completed',
+    courses: [],
+  },
+]
