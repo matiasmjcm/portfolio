@@ -7,7 +7,7 @@ export const PERSONAL = {
   origin:   'Lima, Peru',
   github:   'https://github.com/matiasmjcm',
   linkedin: 'https://www.linkedin.com/in/matias-jose-castro-mendoza-25a80b344/',
-  bio: "Second-year Computer Science student at the University of Poitiers with a background spanning two universities across two continents. I build web apps, systems software, and data tools — and I bring curiosity, adaptability, and a lot of motivation to every project.",
+  bio: "Third-year Computer Science student at the University of Poitiers with a background spanning two universities across two continents. I build web apps, systems software, and data tools — and I bring curiosity, adaptability, and a lot of motivation to every project.",
   available: true,
 }
 
