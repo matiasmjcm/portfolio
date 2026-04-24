@@ -5,10 +5,10 @@ import { PERSONAL, LANGUAGES } from '../../constants'
 import SectionTitle from '../ui/SectionTitle'
 
 const STATS = [
-  { label: 'Universities',    value: '2',   note: 'Peru & France'         },
-  { label: 'Projects Built',  value: '7+',  note: 'Academic & Personal'   },
-  { label: 'Languages',       value: '3',   note: 'ES / FR / EN'          },
-  { label: 'CS Experience',   value: '4+',  note: 'Years Combined'        },
+  { label: 'Universities',   value: '2',   note: 'Peru & France'       },
+  { label: 'Projects Built', value: '7+',  note: 'Academic & Personal' },
+  { label: 'Languages',      value: '3',   note: 'ES / FR / EN'        },
+  { label: 'CS Experience',  value: '4+',  note: 'Years Combined'      },
 ]
 
 export default function About() {
@@ -24,17 +24,15 @@ export default function About() {
           subtitle="A passionate developer from Peru, currently studying and building in France."
         />
 
-        <div className="grid md:grid-cols-2 gap-16 items-center mt-16">
-          {/* Left — photo + languages */}
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center mt-16">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="flex flex-col items-center gap-7"
           >
-            {/* Photo */}
             <div className="relative">
-              <div className="w-64 h-72 rounded-2xl overflow-hidden border border-white/10 shadow-xl shadow-accent-cyan/10">
+              <div className="w-56 h-64 sm:w-64 sm:h-72 rounded-2xl overflow-hidden border border-white/10 shadow-xl shadow-accent-cyan/10">
                 <img
                   src="/photo.jpg"
                   alt="Matias Castro"
@@ -45,7 +43,6 @@ export default function About() {
               <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-xl bg-accent-purple/20 pointer-events-none" />
             </div>
 
-            {/* Location */}
             <div className="flex items-center gap-2 text-text-muted text-sm">
               <FiMapPin className="text-accent-cyan" size={14} />
               <span>{PERSONAL.location}</span>
@@ -53,7 +50,6 @@ export default function About() {
               <span>from {PERSONAL.origin}</span>
             </div>
 
-            {/* Languages */}
             <div className="w-full">
               <p className="text-center text-text-dim text-xs uppercase tracking-widest mb-4 font-mono">
                 Spoken Languages
@@ -78,26 +74,25 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Right — bio + stats */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col gap-7"
           >
-            <p className="text-text-muted text-lg leading-relaxed">{PERSONAL.bio}</p>
+            <p className="text-text-muted text-base sm:text-lg leading-relaxed">{PERSONAL.bio}</p>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {STATS.map((stat, i) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.4 + i * 0.1 }}
-                  className="glass-card p-4 text-center"
+                  className="glass-card p-3 sm:p-4 text-center"
                 >
-                  <p className="text-3xl font-bold gradient-text">{stat.value}</p>
-                  <p className="text-text-primary font-medium text-sm">{stat.label}</p>
+                  <p className="text-2xl sm:text-3xl font-bold gradient-text">{stat.value}</p>
+                  <p className="text-text-primary font-medium text-xs sm:text-sm">{stat.label}</p>
                   <p className="text-text-dim text-xs">{stat.note}</p>
                 </motion.div>
               ))}
@@ -107,14 +102,14 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.6 }}
-              className="glass-card p-5 border-l-4 border-accent-cyan"
+              className="glass-card p-4 sm:p-5 border-l-4 border-accent-cyan"
             >
               <p className="text-text-muted italic text-sm leading-relaxed">
                 "I've always loved exploring everything and I'm afraid of nothing. My education has given me not only academic knowledge, but also human values and humility."
               </p>
             </motion.div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-3 sm:gap-4">
               <a href="#contact" className="btn-primary flex-1 text-center text-sm">
                 Contact Me
               </a>

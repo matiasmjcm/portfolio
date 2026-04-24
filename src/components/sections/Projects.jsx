@@ -86,26 +86,29 @@ export default function Projects() {
           subtitle="From physics simulations to full-stack web apps and graph algorithms."
         />
 
-        {/* Featured project */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-16 mb-8"
         >
-          <div className="relative glass-card p-8 border-accent-cyan/30 overflow-hidden group hover:border-accent-cyan/50 transition-all duration-300">
+          <div className="relative glass-card p-5 sm:p-8 border-accent-cyan/30 overflow-hidden hover:border-accent-cyan/50 transition-all duration-300">
             <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-accent-cyan/20 border border-accent-cyan/40 text-accent-cyan text-xs font-mono">
               ⭐ Featured
             </div>
             <div className="absolute -bottom-20 -right-20 w-56 h-56 rounded-full bg-accent-cyan/5 blur-2xl pointer-events-none" />
 
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
               <div>
                 <span className="text-accent-orange text-xs font-mono uppercase tracking-widest">
                   {featured.category}
                 </span>
-                <h3 className="text-3xl font-bold text-text-primary mt-2 mb-4">{featured.title}</h3>
-                <p className="text-text-muted leading-relaxed mb-6">{featured.description}</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-text-primary mt-2 mb-3 sm:mb-4 pr-16">
+                  {featured.title}
+                </h3>
+                <p className="text-text-muted text-sm sm:text-base leading-relaxed mb-5 sm:mb-6">
+                  {featured.description}
+                </p>
                 <a
                   href={featured.github}
                   target="_blank"
@@ -131,8 +134,7 @@ export default function Projects() {
           </div>
         </motion.div>
 
-        {/* Other projects grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-16">
           {rest.map((project, i) => (
             <ProjectCard
               key={project.id}
@@ -143,7 +145,6 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Live GitHub repos */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -151,24 +152,24 @@ export default function Projects() {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-xl font-bold text-text-primary flex items-center gap-2">
+              <h3 className="text-lg sm:text-xl font-bold text-text-primary flex items-center gap-2">
                 <FiGithub className="text-accent-cyan" />
                 Live from GitHub
               </h3>
-              <p className="text-text-dim text-sm mt-1">Fetched live via GitHub API</p>
+              <p className="text-text-dim text-xs sm:text-sm mt-1">Fetched live via GitHub API</p>
             </div>
             <a
               href={PERSONAL.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-cyan text-sm hover:underline flex items-center gap-1"
+              className="text-accent-cyan text-sm hover:underline flex items-center gap-1 shrink-0"
             >
               View all →
             </a>
           </div>
 
           {loading && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="glass-card h-28 animate-pulse" />
               ))}
@@ -186,7 +187,7 @@ export default function Projects() {
           )}
 
           {!loading && !error && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {repos.map(repo => (
                 <GitHubRepoCard key={repo.id} repo={repo} />
               ))}
