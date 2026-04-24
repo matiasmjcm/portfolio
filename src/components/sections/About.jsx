@@ -32,10 +32,14 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="flex flex-col items-center gap-7"
           >
-            {/* Avatar placeholder */}
+            {/* Photo */}
             <div className="relative">
-              <div className="w-64 h-64 rounded-2xl bg-gradient-to-br from-accent-cyan/20 via-accent-purple/20 to-accent-orange/20 border border-white/10 flex items-center justify-center text-7xl select-none">
-                👨‍💻
+              <div className="w-64 h-72 rounded-2xl overflow-hidden border border-white/10 shadow-xl shadow-accent-cyan/10">
+                <img
+                  src="/photo.jpg"
+                  alt="Matias Castro"
+                  className="w-full h-full object-cover object-[center_18%]"
+                />
               </div>
               <div className="absolute -top-4 -right-4 w-24 h-24 rounded-xl border-2 border-accent-cyan/30 pointer-events-none" />
               <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-xl bg-accent-purple/20 pointer-events-none" />
