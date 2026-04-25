@@ -49,6 +49,7 @@ export default {
     title: 'Formación',
     subtitle: 'De Lima a Poitiers — un viaje por dos continentes y múltiples disciplinas.',
     ongoing: 'En curso',
+    studentLabel: 'Estudiante de Ciencias de la Computación',
     courses: 'Cursos relevantes',
   },
   contact: {

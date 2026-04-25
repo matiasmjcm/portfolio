@@ -49,6 +49,7 @@ export default {
     title: 'Education',
     subtitle: 'From Lima to Poitiers — a journey across two continents and multiple disciplines.',
     ongoing: 'Ongoing',
+    studentLabel: 'Computer Science Student',
     courses: 'Relevant Courses',
   },
   contact: {

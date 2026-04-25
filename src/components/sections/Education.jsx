@@ -47,7 +47,7 @@ export default function Education() {
                 <p className="text-accent-cyan font-medium text-sm mb-3">{edu.degree}</p>
 
                 <div className="flex flex-wrap gap-4 text-text-dim text-xs mb-4">
-                  <span className="flex items-center gap-1.5"><FiCalendar size={12} />{edu.period}</span>
+                  <span className="flex items-center gap-1.5"><FiCalendar size={12} />{edu.status === 'ongoing' ? t.education.studentLabel : edu.period}</span>
                   <span className="flex items-center gap-1.5"><FiMapPin size={12} />{edu.location}</span>
                 </div>
 

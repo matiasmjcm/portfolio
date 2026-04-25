@@ -49,6 +49,7 @@ export default {
     title: 'Formation',
     subtitle: 'De Lima à Poitiers — un voyage sur deux continents et plusieurs disciplines.',
     ongoing: 'En cours',
+    studentLabel: 'Étudiant en Informatique',
     courses: 'Cours pertinents',
   },
   contact: {
