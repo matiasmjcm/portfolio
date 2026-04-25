@@ -3,7 +3,7 @@ export const EDUCATION = [
     id: 1,
     institution: 'Université de Poitiers',
     degree: 'Licence en Informatique',
-    period: 'Currently enrolled',
+    period: 'Computer Science Student',
     location: 'Poitiers, France',
     status: 'ongoing',
     courses: ['OCaml Programming', 'Databases', 'Algorithms', 'Computer Architecture'],
