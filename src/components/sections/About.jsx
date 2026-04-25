@@ -2,27 +2,18 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FiMapPin } from 'react-icons/fi'
 import { PERSONAL, LANGUAGES } from '../../constants'
+import { useLang } from '../../i18n'
 import SectionTitle from '../ui/SectionTitle'
 
-const STATS = [
-  { label: 'Universities',   value: '2',   note: 'Peru & France'       },
-  { label: 'Projects Built', value: '7+',  note: 'Academic & Personal' },
-  { label: 'Languages',      value: '3',   note: 'ES / FR / EN'        },
-  { label: 'CS Experience',  value: '4+',  note: 'Years Combined'      },
-]
-
 export default function About() {
+  const { t }    = useLang()
   const ref      = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
     <section id="about" className="section-padding bg-bg-secondary">
       <div className="max-w-7xl mx-auto" ref={ref}>
-        <SectionTitle
-          eyebrow="Get to know me"
-          title="About Me"
-          subtitle="A passionate developer from Peru, currently studying and building in France."
-        />
+        <SectionTitle eyebrow={t.about.eyebrow} title={t.about.title} subtitle={t.about.subtitle} />
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center mt-16">
           <motion.div
@@ -33,11 +24,7 @@ export default function About() {
           >
             <div className="relative">
               <div className="w-56 h-64 sm:w-64 sm:h-72 rounded-2xl overflow-hidden border border-white/10 shadow-xl shadow-accent-cyan/10">
-                <img
-                  src="/photo.jpg"
-                  alt="Matias Castro"
-                  className="w-full h-full object-cover object-[center_18%]"
-                />
+                <img src="/photo.jpg" alt="Matias Castro" className="w-full h-full object-cover object-[center_18%]" />
               </div>
               <div className="absolute -top-4 -right-4 w-24 h-24 rounded-xl border-2 border-accent-cyan/30 pointer-events-none" />
               <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-xl bg-accent-purple/20 pointer-events-none" />
@@ -52,7 +39,7 @@ export default function About() {
 
             <div className="w-full">
               <p className="text-center text-text-dim text-xs uppercase tracking-widest mb-4 font-mono">
-                Spoken Languages
+                {t.about.spoken}
               </p>
               <div className="flex flex-col gap-3">
                 {LANGUAGES.map((lang, i) => (
@@ -80,10 +67,10 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col gap-7"
           >
-            <p className="text-text-muted text-base sm:text-lg leading-relaxed">{PERSONAL.bio}</p>
+            <p className="text-text-muted text-base sm:text-lg leading-relaxed">{t.hero.bio}</p>
 
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              {STATS.map((stat, i) => (
+              {t.about.stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
@@ -104,23 +91,13 @@ export default function About() {
               transition={{ delay: 0.6 }}
               className="glass-card p-4 sm:p-5 border-l-4 border-accent-cyan"
             >
-              <p className="text-text-muted italic text-sm leading-relaxed">
-                "I've always loved exploring everything and I'm afraid of nothing. My education has given me not only academic knowledge, but also human values and humility."
-              </p>
+              <p className="text-text-muted italic text-sm leading-relaxed">{t.about.quote}</p>
             </motion.div>
 
             <div className="flex gap-3 sm:gap-4">
-              <a href="#contact" className="btn-primary flex-1 text-center text-sm">
-                Contact Me
-              </a>
-              <a
-                href={PERSONAL.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary flex-1 text-center text-sm"
-              >
-                GitHub Profile
-              </a>
+              <a href="#contact" className="btn-primary flex-1 text-center text-sm">{t.about.cta_contact}</a>
+              <a href={PERSONAL.github} target="_blank" rel="noopener noreferrer"
+                 className="btn-secondary flex-1 text-center text-sm">{t.about.cta_github}</a>
             </div>
           </motion.div>
         </div>

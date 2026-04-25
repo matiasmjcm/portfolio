@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion'
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi'
-import { PERSONAL, TYPEWRITER_TITLES } from '../../constants'
+import { PERSONAL } from '../../constants'
+import { useLang } from '../../i18n'
 import { useTypewriter } from '../../hooks/useTypewriter'
 
 export default function Hero() {
-  const typed = useTypewriter(TYPEWRITER_TITLES)
+  const { t } = useLang()
+  const typed  = useTypewriter(t.hero.titles)
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
@@ -35,7 +37,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan text-sm font-medium mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-accent-cyan animate-pulse" />
-              Available for opportunities
+              {t.hero.available}
             </motion.div>
           )}
 
@@ -45,7 +47,7 @@ export default function Hero() {
             transition={{ delay: 0.3 }}
             className="font-mono text-accent-cyan text-base sm:text-lg mb-2"
           >
-            Hi there, I'm
+            {t.hero.greeting}
           </motion.p>
 
           <motion.h1
@@ -75,7 +77,7 @@ export default function Hero() {
             transition={{ delay: 0.7 }}
             className="text-text-muted text-base sm:text-lg max-w-2xl mb-8 sm:mb-10 leading-relaxed"
           >
-            {PERSONAL.bio}
+            {t.hero.bio}
           </motion.p>
 
           <motion.div
@@ -85,10 +87,10 @@ export default function Hero() {
             className="flex flex-wrap gap-3 sm:gap-4 mb-10 sm:mb-12"
           >
             <a href="#projects" className="btn-primary text-sm sm:text-base">
-              View My Work
+              {t.hero.cta_work}
             </a>
             <a href="#contact" className="btn-secondary text-sm sm:text-base">
-              Get In Touch
+              {t.hero.cta_contact}
             </a>
           </motion.div>
 
@@ -98,29 +100,16 @@ export default function Hero() {
             transition={{ delay: 0.9 }}
             className="flex items-center gap-6"
           >
-            <a
-              href={PERSONAL.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-muted hover:text-accent-cyan transition-all duration-200 hover:scale-110"
-              aria-label="GitHub"
-            >
+            <a href={PERSONAL.github} target="_blank" rel="noopener noreferrer"
+               className="text-text-muted hover:text-accent-cyan transition-all duration-200 hover:scale-110" aria-label="GitHub">
               <FiGithub size={22} />
             </a>
-            <a
-              href={PERSONAL.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-muted hover:text-accent-purple transition-all duration-200 hover:scale-110"
-              aria-label="LinkedIn"
-            >
+            <a href={PERSONAL.linkedin} target="_blank" rel="noopener noreferrer"
+               className="text-text-muted hover:text-accent-purple transition-all duration-200 hover:scale-110" aria-label="LinkedIn">
               <FiLinkedin size={22} />
             </a>
-            <a
-              href={`mailto:${PERSONAL.email}`}
-              className="text-text-muted hover:text-accent-orange transition-all duration-200 hover:scale-110"
-              aria-label="Email"
-            >
+            <a href={`mailto:${PERSONAL.email}`}
+               className="text-text-muted hover:text-accent-orange transition-all duration-200 hover:scale-110" aria-label="Email">
               <FiMail size={22} />
             </a>
           </motion.div>
@@ -133,11 +122,8 @@ export default function Hero() {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-dim"
       >
-        <span className="text-xs font-mono">scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-        >
+        <span className="text-xs font-mono">{t.hero.scroll}</span>
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}>
           <FiArrowDown size={16} />
         </motion.div>
       </motion.div>

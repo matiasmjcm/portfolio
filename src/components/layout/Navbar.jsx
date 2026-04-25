@@ -1,22 +1,34 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiMenu, FiX, FiGithub } from 'react-icons/fi'
-import { NAV_LINKS, PERSONAL } from '../../constants'
+import { PERSONAL } from '../../constants'
+import { useLang } from '../../i18n'
+
+const NAV_KEYS = ['about', 'skills', 'projects', 'education', 'contact']
+const NAV_HREFS = {
+  about: '#about', skills: '#skills', projects: '#projects',
+  education: '#education', contact: '#contact',
+}
+
+const LANGS = [
+  { code: 'en', flag: '🇬🇧' },
+  { code: 'fr', flag: '🇫🇷' },
+  { code: 'es', flag: '🇵🇪' },
+]
 
 export default function Navbar() {
-  const [isScrolled,     setIsScrolled]     = useState(false)
-  const [isMobileOpen,   setIsMobileOpen]   = useState(false)
-  const [activeSection,  setActiveSection]  = useState('')
+  const { lang, setLang, t } = useLang()
+  const [isScrolled,    setIsScrolled]    = useState(false)
+  const [isMobileOpen,  setIsMobileOpen]  = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 50)
-
-      const ids = NAV_LINKS.map(l => l.href.replace('#', ''))
-      for (const id of [...ids].reverse()) {
-        const el = document.getElementById(id)
+      for (const key of [...NAV_KEYS].reverse()) {
+        const el = document.getElementById(key)
         if (el && window.scrollY >= el.offsetTop - 120) {
-          setActiveSection(id)
+          setActiveSection(key)
           break
         }
       }
@@ -36,30 +48,45 @@ export default function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="font-mono text-lg font-semibold gradient-text hover:opacity-80 transition-opacity">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+        <a href="#" className="font-mono text-lg font-semibold gradient-text hover:opacity-80 transition-opacity shrink-0">
           &lt;matias /&gt;
         </a>
 
-        {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map(({ label, href }) => (
-            <li key={href}>
+        <ul className="hidden md:flex items-center gap-6">
+          {NAV_KEYS.map(key => (
+            <li key={key}>
               <a
-                href={href}
+                href={NAV_HREFS[key]}
                 className={`text-sm font-medium transition-colors duration-200 hover:text-accent-cyan ${
-                  activeSection === href.replace('#', '')
-                    ? 'text-accent-cyan'
-                    : 'text-text-muted'
+                  activeSection === key ? 'text-accent-cyan' : 'text-text-muted'
                 }`}
               >
-                {label}
+                {t.nav[key]}
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3">
+          {/* Language switcher */}
+          <div className="flex items-center gap-0.5 bg-bg-tertiary rounded-full p-1">
+            {LANGS.map(({ code, flag }) => (
+              <button
+                key={code}
+                onClick={() => setLang(code)}
+                className={`px-2 py-1 rounded-full text-sm transition-all duration-200 ${
+                  lang === code
+                    ? 'bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/40'
+                    : 'text-text-dim hover:text-text-muted'
+                }`}
+                aria-label={code.toUpperCase()}
+              >
+                {flag}
+              </button>
+            ))}
+          </div>
+
           <a
             href={PERSONAL.github}
             target="_blank"
@@ -70,11 +97,10 @@ export default function Navbar() {
             <FiGithub size={20} />
           </a>
           <a href="#contact" className="btn-primary text-sm px-5 py-2">
-            Hire Me
+            {t.nav.hire}
           </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
           onClick={() => setIsMobileOpen(o => !o)}
           className="md:hidden text-text-muted hover:text-accent-cyan transition-colors"
@@ -84,7 +110,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile drawer */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
@@ -94,19 +119,35 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="md:hidden bg-bg-secondary border-b border-white/5 px-6 py-5"
           >
-            <ul className="flex flex-col gap-5">
-              {NAV_LINKS.map(({ label, href }) => (
-                <li key={href}>
+            <ul className="flex flex-col gap-5 mb-5">
+              {NAV_KEYS.map(key => (
+                <li key={key}>
                   <a
-                    href={href}
+                    href={NAV_HREFS[key]}
                     onClick={() => setIsMobileOpen(false)}
                     className="text-text-muted hover:text-accent-cyan transition-colors font-medium"
                   >
-                    {label}
+                    {t.nav[key]}
                   </a>
                 </li>
               ))}
             </ul>
+
+            <div className="flex items-center gap-0.5 bg-bg-tertiary rounded-full p-1 w-fit">
+              {LANGS.map(({ code, flag }) => (
+                <button
+                  key={code}
+                  onClick={() => setLang(code)}
+                  className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
+                    lang === code
+                      ? 'bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/40'
+                      : 'text-text-dim hover:text-text-muted'
+                  }`}
+                >
+                  {flag} {code.toUpperCase()}
+                </button>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

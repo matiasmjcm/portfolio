@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { SKILLS } from '../../data/skills'
+import { useLang } from '../../i18n'
 import SectionTitle from '../ui/SectionTitle'
 import SkillBadge   from '../ui/SkillBadge'
 
@@ -12,17 +13,14 @@ const HEADER_COLOR = {
 }
 
 export default function Skills() {
+  const { t }    = useLang()
   const ref      = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
     <section id="skills" className="section-padding bg-bg-primary">
       <div className="max-w-7xl mx-auto" ref={ref}>
-        <SectionTitle
-          eyebrow="What I work with"
-          title="Skills & Technologies"
-          subtitle="A diverse toolkit built across two universities and multiple years of hands-on projects."
-        />
+        <SectionTitle eyebrow={t.skills.eyebrow} title={t.skills.title} subtitle={t.skills.subtitle} />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-16">
           {SKILLS.map((category, i) => (
@@ -39,7 +37,6 @@ export default function Skills() {
                   {category.category}
                 </h3>
               </div>
-
               <div className="flex flex-wrap gap-2">
                 {category.items.map((skill, j) => (
                   <SkillBadge

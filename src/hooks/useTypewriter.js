@@ -6,6 +6,14 @@ export function useTypewriter(words, typeSpeed = 80, deleteSpeed = 40, pauseDela
   const [deleting, setDeleting] = useState(false)
   const [paused,   setPaused]   = useState(false)
 
+  // reset when language changes (words array reference changes)
+  useEffect(() => {
+    setIndex(0)
+    setSubIndex(0)
+    setDeleting(false)
+    setPaused(false)
+  }, [words])
+
   useEffect(() => {
     if (paused) {
       const t = setTimeout(() => { setPaused(false); setDeleting(true) }, pauseDelay)

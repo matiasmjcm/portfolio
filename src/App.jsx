@@ -1,3 +1,4 @@
+import { LangProvider } from './i18n'
 import Navbar    from './components/layout/Navbar'
 import Footer    from './components/layout/Footer'
 import Hero      from './components/sections/Hero'
@@ -9,17 +10,19 @@ import Contact   from './components/sections/Contact'
 
 export default function App() {
   return (
-    <div className="bg-bg-primary text-text-primary font-sans min-h-screen">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Education />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <LangProvider>
+      <div className="bg-bg-primary text-text-primary font-sans min-h-screen">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Education />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </LangProvider>
   )
 }
