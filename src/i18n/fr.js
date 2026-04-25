@@ -10,7 +10,7 @@ export default {
     cta_work: 'Voir mes projets',
     cta_contact: 'Me contacter',
     titles: ['Développeur Full Stack', 'Ingénieur Logiciel', 'Étudiant @ Poitiers', 'Passionné de Data Analytics', 'Problem Solver'],
-    bio: "Étudiant en 3ème année de Licence Informatique à l'Université de Poitiers, avec un parcours dans deux universités sur deux continents. Je développe des applications web, des logiciels et des outils de données avec curiosité, adaptabilité et motivation.",
+    bio: "Étudiant de Licence Informatique à l'Université de Poitiers, avec un parcours dans deux universités sur deux continents. Je développe des applications web, des logiciels et des outils de données avec curiosité, adaptabilité et motivation.",
   },
   about: {
     eyebrow: 'Apprenez à me connaître',

@@ -10,7 +10,7 @@ export default {
     cta_work: 'View My Work',
     cta_contact: 'Get In Touch',
     titles: ['Full Stack Developer', 'Software Engineer', 'CS Student @ Poitiers', 'Data Analytics Enthusiast', 'Problem Solver'],
-    bio: "Third-year Computer Science student at the University of Poitiers with a background spanning two universities across two continents. I build web apps, systems software, and data tools — curiosity, adaptability, and motivation in every project.",
+    bio: "Computer Science student at the University of Poitiers with a background spanning two universities across two continents. I build web apps, systems software, and data tools — curiosity, adaptability, and motivation in every project.",
   },
   about: {
     eyebrow: 'Get to know me',
