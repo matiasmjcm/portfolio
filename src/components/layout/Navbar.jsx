@@ -11,9 +11,9 @@ const NAV_HREFS = {
 }
 
 const LANGS = [
-  { code: 'en', flag: '🇬🇧' },
-  { code: 'fr', flag: '🇫🇷' },
-  { code: 'es', flag: '🇵🇪' },
+  { code: 'en', flag: '🇬🇧', label: 'EN' },
+  { code: 'fr', flag: '🇫🇷', label: 'FR' },
+  { code: 'es', flag: '🇵🇪', label: 'ES' },
 ]
 
 export default function Navbar() {
@@ -68,21 +68,22 @@ export default function Navbar() {
           ))}
         </ul>
 
+        {/* Desktop right side */}
         <div className="hidden md:flex items-center gap-3">
-          {/* Language switcher */}
-          <div className="flex items-center gap-0.5 bg-bg-tertiary rounded-full p-1">
-            {LANGS.map(({ code, flag }) => (
+          <div className="flex items-center gap-0.5 bg-bg-tertiary rounded-full p-1 border border-white/5">
+            {LANGS.map(({ code, flag, label }) => (
               <button
                 key={code}
                 onClick={() => setLang(code)}
-                className={`px-2 py-1 rounded-full text-sm transition-all duration-200 ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-semibold transition-all duration-200 ${
                   lang === code
-                    ? 'bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/40'
-                    : 'text-text-dim hover:text-text-muted'
+                    ? 'bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/40 shadow-sm'
+                    : 'text-text-dim hover:text-text-muted hover:bg-white/5'
                 }`}
-                aria-label={code.toUpperCase()}
+                aria-label={label}
               >
-                {flag}
+                <span>{flag}</span>
+                <span>{label}</span>
               </button>
             ))}
           </div>
@@ -101,13 +102,34 @@ export default function Navbar() {
           </a>
         </div>
 
-        <button
-          onClick={() => setIsMobileOpen(o => !o)}
-          className="md:hidden text-text-muted hover:text-accent-cyan transition-colors"
-          aria-label="Toggle menu"
-        >
-          {isMobileOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
+        {/* Mobile: lang switcher + hamburger always visible */}
+        <div className="md:hidden flex items-center gap-2">
+          <div className="flex items-center gap-0.5 bg-bg-tertiary rounded-full p-0.5 border border-white/5">
+            {LANGS.map(({ code, flag, label }) => (
+              <button
+                key={code}
+                onClick={() => setLang(code)}
+                className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-mono font-semibold transition-all duration-200 ${
+                  lang === code
+                    ? 'bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/40'
+                    : 'text-text-dim'
+                }`}
+                aria-label={label}
+              >
+                <span>{flag}</span>
+                <span className="hidden xs:inline">{label}</span>
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setIsMobileOpen(o => !o)}
+            className="text-text-muted hover:text-accent-cyan transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMobileOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -133,21 +155,6 @@ export default function Navbar() {
               ))}
             </ul>
 
-            <div className="flex items-center gap-0.5 bg-bg-tertiary rounded-full p-1 w-fit">
-              {LANGS.map(({ code, flag }) => (
-                <button
-                  key={code}
-                  onClick={() => setLang(code)}
-                  className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
-                    lang === code
-                      ? 'bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/40'
-                      : 'text-text-dim hover:text-text-muted'
-                  }`}
-                >
-                  {flag} {code.toUpperCase()}
-                </button>
-              ))}
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
